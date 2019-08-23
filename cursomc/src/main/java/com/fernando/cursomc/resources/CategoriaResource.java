@@ -13,7 +13,6 @@ import com.fernando.cursomc.domain.Categoria;
 @RequestMapping(value="/categorias")
 public class CategoriaResource {
 	
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Categoria> listar() {
 		
@@ -23,7 +22,6 @@ public class CategoriaResource {
 		List<Categoria> lista = new ArrayList<>();
 		lista.add(cat);
 		lista.add(cat2);	
-		
 		return lista;
 	}
 
