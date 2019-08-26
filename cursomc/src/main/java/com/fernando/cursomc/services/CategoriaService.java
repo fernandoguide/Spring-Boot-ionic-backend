@@ -27,7 +27,11 @@ public class CategoriaService {
 		}
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
-		return repo.save(obj);
+		return repo.saveAndFlush(obj);
 	}
 
+	public Categoria update(Categoria obj) {
+		find(obj.getId());
+		return repo.saveAndFlush(obj);
+	}
 }
