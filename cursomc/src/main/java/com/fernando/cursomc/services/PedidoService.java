@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fernando.cursomc.domain.Pedido;
 import com.fernando.cursomc.repositories.PedidoRepository;
-import com.fernando.cursomc.services.exepitions.ObjectNotFoundExecpition;
+import com.fernando.cursomc.services.excepitions.ObjectNotFoundExecpition;
 
 
 

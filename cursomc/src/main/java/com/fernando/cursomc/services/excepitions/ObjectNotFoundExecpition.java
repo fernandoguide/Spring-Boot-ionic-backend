@@ -1,4 +1,4 @@
-package com.fernando.cursomc.services.exepitions;
+package com.fernando.cursomc.services.excepitions;
 
 public class ObjectNotFoundExecpition  extends RuntimeException{
 
