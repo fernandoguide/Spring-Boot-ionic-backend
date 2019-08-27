@@ -29,7 +29,10 @@ private static final long serialVersionUID = 1L;
 	@Column(name = "cliente_id")
 	private Integer id;
 	private String nome;
+	
+	@Column(unique=true)
 	private String email;
+	
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
