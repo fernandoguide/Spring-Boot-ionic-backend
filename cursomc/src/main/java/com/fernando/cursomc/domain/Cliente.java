@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -32,7 +33,8 @@ private static final long serialVersionUID = 1L;
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
-	@OneToMany(mappedBy  ="cliente")
+//	regra de negocio que pode apagar em cascata os  enderecos
+	@OneToMany(mappedBy  ="cliente" , cascade = CascadeType.ALL)
 	private List<Endereco>  enderecos = new ArrayList<>();
 	
 	@ElementCollection

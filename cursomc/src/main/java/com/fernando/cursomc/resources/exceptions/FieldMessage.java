@@ -6,29 +6,29 @@ public class FieldMessage implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private String  fiedName;
+	private String  fieldName;
 	private String message;
 	
 	public FieldMessage() {
 		
 	}
 
-	public FieldMessage(String fiedName, String message) {
+	public FieldMessage(String fieldName, String message) {
 		super();
-		this.fiedName = fiedName;
+		this.fieldName = fieldName;
 		this.message = message;
 	}
 
-	public String getFiedName() {
-		return fiedName;
+	public String getFieldName() {
+		return fieldName;
 	}
 
 	public String getMessage() {
 		return message;
 	}
 
-	public void setFiedName(String fiedName) {
-		this.fiedName = fiedName;
+	public void setFieldName(String fieldName) {
+		this.fieldName = fieldName;
 	}
 
 	public void setMessage(String message) {
