@@ -36,7 +36,11 @@ private static final long serialVersionUID = 1L;
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
-//	regra de negocio que pode apagar em cascata os  enderecos
+	@JsonIgnore
+	private String senha;
+
+
+	//	regra de negocio que pode apagar em cascata os  enderecos
 	@OneToMany(mappedBy  ="cliente" , cascade = CascadeType.ALL)
 	private List<Endereco>  enderecos = new ArrayList<>();
 	
@@ -60,13 +64,14 @@ private static final long serialVersionUID = 1L;
 		
 	}
 
-	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
+	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo ,String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.tipo = (tipo==null) ? null : tipo.getCod();
+		this.senha = senha;
 	}
 
 	public Integer getId() {
@@ -123,6 +128,13 @@ private static final long serialVersionUID = 1L;
 
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
+	}
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	@Override
