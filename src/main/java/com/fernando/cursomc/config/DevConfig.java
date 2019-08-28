@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.fernando.cursomc.services.DBService;
+import com.fernando.cursomc.services.EmailService;
+import com.fernando.cursomc.services.SmtpEmailService;
 
 @Configuration
 @Profile("dev")
@@ -17,7 +19,7 @@ public class DevConfig {
 	@Autowired
 	private DBService dbService;
 
-//	estrategia de geracao do banco de dados
+	//	estrategia de geracao do banco de dados
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String strategy;
 
@@ -30,5 +32,9 @@ public class DevConfig {
 
 		dbService.instantiateTestDatabase();
 		return true;
+	}
+	@Bean
+	public EmailService emailService() {
+		return new SmtpEmailService();
 	}
 }
