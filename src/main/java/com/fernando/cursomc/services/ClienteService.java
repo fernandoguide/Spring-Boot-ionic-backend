@@ -34,27 +34,27 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository repo;
-	
+
 	@Autowired
 	private EnderecoRepository enderecoRepository;
-	
+
 	@Autowired
 	private S3Service s3Service;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder pe;
 
 	public Cliente find(Integer id) {
-		
+
 		UserSS user = UserService.authenticated();
-		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
 			throw new AuthorizationException("Acesso negado");
 		}
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundExecpition(
-				"Objeto nao encontrado! Id: " + id
-				+ " Tipo: "+ Cliente.class.getName()));
+				"Objeto nao encontrado! Id: " + id + " Tipo: " + Cliente.class.getName()));
 	}
+
 	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
@@ -62,16 +62,19 @@ public class ClienteService {
 		enderecoRepository.saveAll(obj.getEnderecos());
 		return obj;
 	}
+
 	public Cliente fromDTO(ClienteNewDTO objDto) {
-		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()), pe.encode(objDto.getSenha()));
+		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(),
+				TipoCliente.toEnum(objDto.getTipo()), pe.encode(objDto.getSenha()));
 		Cidade cid = new Cidade(objDto.getCidadeId(), null, null);
-		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), cli, cid);
+		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(),
+				objDto.getBairro(), objDto.getCep(), cli, cid);
 		cli.getEnderecos().add(end);
 		cli.getTelefones().add(objDto.getTelefone1());
-		if (objDto.getTelefone2()!=null) {
+		if (objDto.getTelefone2() != null) {
 			cli.getTelefones().add(objDto.getTelefone2());
 		}
-		if (objDto.getTelefone3()!=null) {
+		if (objDto.getTelefone3() != null) {
 			cli.getTelefones().add(objDto.getTelefone3());
 		}
 		return cli;
@@ -87,8 +90,7 @@ public class ClienteService {
 		find(id);
 		try {
 			repo.deleteById(id);
-		}
-		catch (DataIntegrityViolationException e) {
+		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityExecpition("Não é possível excluir porque há pedidos relacionados");
 		}
 	}
@@ -110,6 +112,7 @@ public class ClienteService {
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
 	}
+
 	public URI uploadProfilePicture(MultipartFile multipartFile) {
 		return s3Service.uploadFile(multipartFile);
 	}
