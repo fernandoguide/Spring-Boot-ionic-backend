@@ -60,7 +60,7 @@ private static final long serialVersionUID = 1L;
 	@OneToMany(mappedBy  ="cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 	
-	private String imageUrl;
+//	private String imageUrl;
 	
 	public List<Pedido> getPedidos() {
 		return pedidos;
@@ -147,13 +147,13 @@ private static final long serialVersionUID = 1L;
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
+//	public String getImageUrl() {
+//		return imageUrl;
+//	}
+//
+//	public void setImageUrl(String imageUrl) {
+//		this.imageUrl = imageUrl;
+//	}
 	public Set<Perfil> getPerfis() {
 //		retorna os perfis do cliente e ja muda ele pra collectos.
 		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
