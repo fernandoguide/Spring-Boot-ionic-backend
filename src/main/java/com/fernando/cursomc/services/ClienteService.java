@@ -42,16 +42,15 @@ public class ClienteService {
 
 	@Autowired
 	private S3Service s3Service;
-	
+
 	@Autowired
 	private ImageService imageService;
 
 	@Value("${img.prefix.client.profile}")
 	private String prefix;
-	
+
 	@Value("${img.profile.size}")
 	private Integer size;
-
 
 	@Autowired
 	private BCryptPasswordEncoder pe;
@@ -110,6 +109,7 @@ public class ClienteService {
 	public List<Cliente> findAll() {
 		return repo.findAll();
 	}
+
 	public Cliente findByEmail(String email) {
 		UserSS user = UserService.authenticated();
 		if (user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
@@ -123,7 +123,6 @@ public class ClienteService {
 		}
 		return obj;
 	}
-
 
 	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
