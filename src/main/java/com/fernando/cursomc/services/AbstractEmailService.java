@@ -52,7 +52,7 @@ public abstract class AbstractEmailService implements EmailService {
 	 public void sendOrderConfirmationHtmlEmail(Pedido obj) {
 		try {
 		MimeMessage mm = prepareMimeMessageFromPedido(obj);
-		sendHtmlEmail(mm);
+//		sendHtmlEmail(mm);
 		}catch (MessagingException e) {
 			sendOrderConfirmationEmail(obj);
 		}

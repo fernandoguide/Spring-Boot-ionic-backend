@@ -28,16 +28,16 @@ public class PedidoService {
 
 	@Autowired
 	private PedidoRepository repo;
-
+	
 	@Autowired
 	private BoletoService boletoService;
-
+	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
-
+	
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
-
+	
 	@Autowired
 	private ProdutoService produtoService;
 	

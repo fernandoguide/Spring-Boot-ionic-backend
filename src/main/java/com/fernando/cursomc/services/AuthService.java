@@ -19,7 +19,7 @@ public class AuthService {
 	@Autowired
 	private BCryptPasswordEncoder pe;
 
-
+	@Autowired
 	private EmailService emailService;
 
 	private Random rand = new Random();
@@ -37,26 +37,22 @@ public class AuthService {
 		clienteRepository.save(cliente);
 		emailService.sendNewPasswordEmail(cliente, newPass);
 	}
-// gera uma senha de 10 caracteres e esses caracteres podem ser digitos ou letras.
+
 	private String newPassword() {
 		char[] vet = new char[10];
-		for (int i=0; i<10; i++) {
+		for (int i = 0; i < 10; i++) {
 			vet[i] = randomChar();
 		}
 		return new String(vet);
 	}
 
-//	gera caracteres aleatorios usando os numero da tabela uniCode. ex 48 é 0 , 
-//	ex 65 é A maiusculo existem 26 possibilidades do alfabeto.
 	private char randomChar() {
 		int opt = rand.nextInt(3);
 		if (opt == 0) { // gera um digito
 			return (char) (rand.nextInt(10) + 48);
-		}
-		else if (opt == 1) { // gera letra maiuscula
+		} else if (opt == 1) { // gera letra maiuscula
 			return (char) (rand.nextInt(26) + 65);
-		}
-		else { // gera letra minuscula
+		} else { // gera letra minuscula
 			return (char) (rand.nextInt(26) + 97);
 		}
 	}
