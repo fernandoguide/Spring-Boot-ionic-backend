@@ -35,7 +35,7 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(obj) ;
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<CategoriaDTO>>  findAll() {
 		List<Categoria> list = service.findAll();
 		List<CategoriaDTO> listDto = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
