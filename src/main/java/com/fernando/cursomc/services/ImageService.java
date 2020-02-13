@@ -36,7 +36,7 @@ public class ImageService {
 		}
 	}
 
-//	transforma arquivo pnf em jpg
+//	transforma arquivo png em jpg
 	public BufferedImage pngToJpg(BufferedImage img) {
 		BufferedImage jpgImage = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
 		jpgImage.createGraphics().drawImage(img, 0, 0, Color.WHITE, null);
